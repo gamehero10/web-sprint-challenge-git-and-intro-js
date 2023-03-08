@@ -18,6 +18,7 @@ const artists = [
     "bio": "Wassily Wassilyevich Kandinsky (Russian: Васи́лий Васи́льевич Канди́нский, tr. Vasíliy Vasílʹevich Kandínskiy) (16 December [O.S. 4 December] 1866 – 13 December 1944) was a Russian painter and art theorist.",
     "wikipedia": "http://en.wikipedia.org/wiki/Wassily_Kandinsky",
     "paintings": 88
+
   },
   {
     "id": 2,
@@ -244,15 +245,15 @@ Use listOfNames to do the following:
 🌟 EXAMPLE of return: ["Amedeo Modigliani", "Vasiliy Kandinskiy", "Diego Rivera"....]
 */
 
-const spreadArray = [ ];
 function listOfNames(array) {
-  for(let i = 0; i < artists.length; i++) {
-      spreadArray.push(artists[i].name);
+  const nameOfArtists = [];
+  for(let i = 0; i < array.length; i++) {
+    nameOfArtists.push(array[i].name);
        }
-   return spreadArray; 
+   return nameOfArtists;
 }
 
-console.log('Task 4:',listOfNames(spreadArray)); 
+console.log('Task 4:',listOfNames(artists)); 
 
 
 
@@ -265,12 +266,11 @@ Use removeArtist to do the following:
 4. Remove an artist from the copied array at the desired index
 5. Return the resulting copied array
 🌟 EXAMPLE: if removeArtist is invoked with the artists array and the number 0, it will return the resulting array with Amedeo Modigliani removed from our dataset. */
-const oneArtist = [...artists];
 function removeArtist(array,number) {
-  oneArtist.shift();
-  return oneArtist;
+  array.shift(array[number]);
+  return array;
 }
-console.log('Task 5:',removeArtist(oneArtist,0)); 
+console.log('Task 5:',removeArtist(artists,0)); 
 
 
 
@@ -289,12 +289,11 @@ Use addArtist to do the following:
   }  
 5. Add the newly created object to the copied array, then return the copied array
 🌟 EXAMPLE: Invoking addArtist(artists, 'John Doe', '1988-2022', 'Full Stack Development', 'African American', 'I have a background in customer service at Big Retail Chain. I am attending BloomTech to become a Frontend Developer.') should return the artists array with the above object added to the end of the array. */
-const newArtist = [...artists];
 function addArtist(array,name,years,genre,nationality,bio) {
-  newArtist.push({name,years,genre,nationality,bio});
-  return newArtist; 
+  array.push({name,years,genre,nationality,bio});
+  return array;
 }
-console.log('Task 6:',addArtist(artists,'John Doe','1988-2022','Full Stack Development','African American', 'I have a background in customer service at Big Retail Chain. I am attending BloomTech to become a frontend developer'));
+console.log('Task 6:',addArtist(artists,'John Doe','1988-2022','Full Stack Development','African American', ' I have a background in customer service at Big Retail Chain. I am attending BloomTech to become a Frontend Developer.'));
 
 
 
@@ -305,37 +304,34 @@ Use lotsOfArt to do the following:
 
 🌟 EXAMPLE: lotsOfArt(artists) will return ["Amedeo Modigliani", "Rene Magritte", ... "Albrecht Dürer"]
 */
-const manyPaintings = [];
 function lotsOfArt(array) {
-  for(let i = 0; i < artists.length; i++) {
-   if(artists[i].paintings > 100) {
-    manyPaintings.push(artists[i].name);
+ const manyPaintings = [];
+  for(let i = 0; i < array.length; i++) {
+   if(array[i].paintings > 100) {
+    manyPaintings.push(array[i].name);
    }
   }
   return manyPaintings;
-  
 }
-console.log('Task 7:',lotsOfArt(manyPaintings)); 
-
+console.log('Task 7:',lotsOfArt(artists));
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 8: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Use artistInfo to do the following: 
 1. Receive the artist array as an argument passed from the FIRST parameter
 2. Receive a string (artist's name) as an argument passed from the SECOND parameter
-3. Return the artists bio
+3. Return the artists bio.
 
 🌟 EXAMPLE: Invoking artistInfo(artists, 'Frida Kahlo') will return: 
   "Frida Kahlo de Rivera (Spanish pronunciation: [ˈfɾiða ˈkalo]; born Magdalena Carmen Frida Kahlo y Calderón; 6 July 1907 – 13 July 1954) was a Mexican artist who painted many portraits, self-portraits and works inspired by the nature and artifacts of Mexico. Inspired by the country's popular culture, she employed a naïve folk art style to explore questions of identity, postcolonialism, gender, class and race in Mexican society. Her paintings often had strong autobiographical elements and mixed realism with fantasy. In addition to belonging to the post-revolutionary Mexicayotl movement, which sought to define a Mexican identity, Kahlo has been described as a surrealist or magical realist.Born to a German father and a mestiza mother, Kahlo spent most of her childhood and adult life at her family home in Coyoacán, La Casa Azul, now known and publicly accessible as the Frida Kahlo Museum. She was disabled by polio as a child. Until a traffic accident at age eighteen caused lifelong pain and medical problems, she had been a promising student headed for medical school. During her recovery, she returned to her childhood hobby of art with the idea of becoming an artist."
 */
 
-function artistInfo(array,name){
-  return artists[17].bio;
-}
+function artistInfo(array,name) {
+     return array[11].bio;
+    
+  }
+
 console.log('Task 8:',artistInfo(artists,'Frida Kahlo'));
-
-
-
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 9: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Use artistByCountry to do the following: 
 1. Receive the artist array as an argument passed from the FIRST parameter
@@ -345,19 +341,18 @@ Use artistByCountry to do the following:
 
 🌟 EXAMPLE: Invoking artistByCountry(artists, 'Spanish') will return: [ 'Salvador Dali', 'Pablo Picasso', 'Francisco Goya']
 */
-const spanishArtists = [];
 function artistByCountry(array,nationality){
-  for(let i = 0; i < artists.length; i++) {
-   if(artists[i].nationality === 'Spanish') {
-     spanishArtists.push(artists[i].name);  
-   }
+    let filteredArray = [];
+    for(let i = 0; i < array.length; i++) {
+        if(array[i].nationality === nationality) {
+           filteredArray.push(array[i].name);
+        }
+    }
+    return filteredArray;
   }
-  return spanishArtists;
-}
-console.log('Task 9:',artistByCountry(spanishArtists,'Spanish'));
+  
 
-
-
+console.log('Task 9:', artistByCountry(artists,'Spanish'));  
 /* ***** END OF TASKS ***** */
 
 
